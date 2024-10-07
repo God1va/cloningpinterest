@@ -1,11 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
-html, body {
-  font-family: 'Inter', sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+.font-montserrat {
+  font-family: 'Montserrat', sans-serif;
 }
+
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -37,49 +39,9 @@ body {
   }
 }
 
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: white; /* Background tetap putih */
-  top: 0;
-  left: 0;
-  right: 0;
-  position: fixed; /* Navbar tetap di atas untuk desktop */
-  z-index: 50; /* Pastikan navbar muncul di atas konten */
+.sidebar {
+  z-index: 100; /* Pastikan nilai ini lebih besar dari elemen lain */
 }
-
-@media (max-width: 768px) {
-  .navbar {
-    position: fixed;
-    bottom: 0; /* Pindahkan navbar ke bagian bawah layar */
-    top: auto; /* Hilangkan top agar navbar hanya diposisikan di bawah */
-    left: 0;
-    right: 0;
-    flex-direction: row;
-    justify-content: space-around;
-    background-color: white; /* Pastikan background tetap putih */
-    padding: 10px;
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-    z-index: 50; /* Tetap di atas elemen lain */
-  }
-
-  /* Sembunyikan elemen yang tidak diperlukan di mobile */
-  .navbar .relative {
-    display: none;
-  }
-
-  .navbar .flex-grow {
-    display: none;
-  }
-
-  .navbar ul {
-    display: flex;
-    gap: 10px;
-  }
-}
-
-
 
 .masonry {
   column-count: 1; /* Jumlah kolom */
@@ -101,41 +63,23 @@ body {
     column-count: 3; /* Jumlah kolom untuk layar lebih besar */
   }
 }
-
 @media (min-width: 684px) {
   .masonry {
     column-count: 4; /* Jumlah kolom untuk layar lebih besar */
   }
 }
-
 @media (min-width: 854px) {
   .masonry {
     column-count: 5; /* Jumlah kolom untuk layar lebih besar */
   }
 }
-
 @media (min-width: 1024px) {
   .masonry {
     column-count: 6;
   }
 }
 
-.massonry {
-  column-count: 1;
-  column-gap: 1rem;
-}
-
-.massonry-item {
-  break-inside: avoid;
-  margin-bottom: 1rem;
-}
-
-@media (min-width: 1024px){
-.massonry{
-  column-count: 3;
-  }
-}
-
+/* CSS untuk navbar bawah */
 nav.navbar-bottom {
   background-color: #fff;
 }
@@ -144,12 +88,62 @@ nav.navbar-bottom:hover {
   background-color: rgba(0, 0, 0, 0.7); /* Lebih gelap saat hover */
 }
 
-/* Tambahan CSS kustom jika diperlukan */
+/* Tambahan CSS untuk comment section */
 .comment-section.fixed {
-  background-color: #ffffff; /* Warna latar belakang */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Bayangan untuk menonjolkan elemen */
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 textarea {
-  border-color: #e5e7eb; /* Warna border untuk textarea */
+  border-color: #e5e7eb;
+}
+
+/* Pola navbar */
+.navbar-pattern {
+  background-image: url('/public/navbar.svg');
+  background-size: cover;
+}
+
+/* Add this to your stylesheet */
+
+/* Mobile devices (max-width: 768px) */
+@media only screen and (max-width: 768px) {
+  /* Make the navbar and sidebar responsive */
+  nav {
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .Sidebar {
+    width: 100%;
+    left: 0;
+    top: 0;
+    transform: translateX(0);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .Sidebar.isOpen {
+    transform: translateX(0);
+  }
+  
+  /* Make the SoalPage content responsive */
+  .SoalPage {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .SoalPage .question-container {
+    width: 100%;
+    padding: 20px;
+  }
+  
+  .SoalPage .pagination-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .SoalPage .pagination-buttons button {
+    width: 100%;
+    margin-bottom: 10px;
+  }
 }

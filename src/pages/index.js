@@ -1,38 +1,23 @@
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
-import Cookies from 'js-cookie'; // Import js-cookie
-import Navbar from './components/Navbar';
-import NavbarBottom from './components/NavbarBottom';
+import React from 'react';
+import Navbar from './components/navbar';
+import Link from 'next/link'; // Import Link for navigation
 
-function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const router = useRouter();
-
-  useEffect(() => {
-    const checkLoginStatus = () => {
-      const token = Cookies.get('token'); // Mengambil token dari Cookies
-      if (token) {
-        setIsLoggedIn(true);
-      } else {
-        router.push('/login'); // Redirect ke login.js jika tidak ada token
-      }
-    };
-
-    checkLoginStatus();
-  }, [router]);
-
+export default function Home() {
   return (
-    <div className="bg-white">
-      {isLoggedIn && ( // Render navbar hanya jika user sudah login
-        <>
-          <Navbar />
-          <div className="pt-24 bg-white">
-            <NavbarBottom />
-          </div>
-        </>
-      )}
+    <div className="bg-gray-100 min-h-screen">
+      <Navbar />
+      <div className="flex flex-col items-center justify-center h-screen">
+        <h1 className="text-4xl font-bold text-gray-800 mb-8">
+          Selamat Datang di Halaman Utama
+        </h1>
+
+        {/* Tombol menuju halaman Kategori */}
+        <Link href="/Kategori">
+          <button className="bg-blue-500 text-white font-montserrat px-6 py-3 rounded-lg shadow hover:bg-blue-600 transition duration-300">
+            Mulai Quiz
+          </button>
+        </Link>
+      </div>
     </div>
   );
 }
-
-export default App;
